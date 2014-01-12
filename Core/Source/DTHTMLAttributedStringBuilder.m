@@ -563,6 +563,14 @@
 	};
 	
 	[_tagStartHandlers setObject:[pBlock copy] forKey:@"p"];
+
+	void (^preformattedBlock)(void) = ^{
+		_currentTag.preserveNewlines = YES;
+		_currentTag.containsAppleConvertedSpace = YES;
+	};
+
+	[_tagStartHandlers setObject:[preformattedBlock copy] forKey:@"pre"];
+	[_tagStartHandlers setObject:[preformattedBlock copy] forKey:@"code"];
 }
 
 - (void)_registerTagEndHandlers
